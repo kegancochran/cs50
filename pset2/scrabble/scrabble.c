@@ -20,26 +20,52 @@ int main(void)
 	int score2 = compute_score(word2);
 
 	// TODO: Print the winner
+	if (score1 == score2)
+	{
+		printf("It's a tie!\n");
+	}
+	else 
+	{
+		if (score1 > score2)
+		{
+			printf("Player 1 Wins!\n");
+		}
+		else
+		{
+			printf("Player 2 Wins!\n");
+		}	
+	}
 }
 
 int compute_score(string word)
 {
-	// TODO: Compute and return score for string
 	// For each letter:
-	for(int i = 0, int length = strlen(word); i < length; i++);
+	int letterScore = 0;
+	int length = strlen(word);
+	for(int i = 0; i < length; i++)
 	{
 		// Make uppercase
 		int letter = word[i];
 		letter = toupper(letter);
-		letter =- 71;		
-
-		// Get letter-score
-		int letter-score = POINTS[letter];
-		printf("%i\n");
+		letter -= 65;		
+		
+		// Get letterScore
+		if (letter > 0 && letter < 26)
+		{
+			letterScore = POINTS[letter];
+		}
+		else
+		{
+			letterScore = 0;
+		}
 	}	
 	
-	// Sum letter-scores
-	
+	// Sum letterScore
+	int score = 0;
+	for(int i = 0; i < length; i++)
+	{
+		score += letterScore;	
+	}
 	return score;
 }
 
