@@ -1,3 +1,1 @@
 # Scrabble Pseudocode
-
-poopy
