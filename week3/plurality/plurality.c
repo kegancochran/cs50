@@ -84,8 +84,35 @@ bool vote(string name)
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    // TODO
+                                                        // TODO
+    // Print unsorted results
+    printf("Unsorted Results:\n");
+    for (int i = 0; i < candidate_count; i++)
+    {
+        printf("%s: %i\n", candidates[i].name, candidates[i].votes);
+    }
+
     // Sort candidates[] by votes
+        for (int i = 0; i < candidate_count; i++)
+        {
+            for (int k = 0; k < candidate_count; k++)
+            {
+               candidate x = candidates[i];
+               candidate y = candidates[candidate_count - 1];
+               if (x.votes < y.votes)
+               {
+                   candidates[i] = y;
+                   candidates[candidate_count - 1] = x;
+               }
+            }
+        }
+
+    // Print sorted results 
+    printf("Sorted Results:\n");
+    for (int i = 0; i < candidate_count; i++)
+    {
+        printf("%s: %i\n", candidates[i].name, candidates[i].votes);
+    }
     // Check for ties
     // Add winner(s) to winner[]
     // Print winner[]
