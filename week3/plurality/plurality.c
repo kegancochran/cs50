@@ -93,19 +93,21 @@ void print_winner(void)
     }
 
     // Sort candidates[] by votes
-        for (int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count - 1; i++)
+    {
+        for (int k = 0; k < candidate_count - 1; k++)
         {
-            for (int k = 0; k < candidate_count; k++)
+            // Compare votes
+            if (candidates[k].votes < candidates[k+1].votes)
             {
-               candidate x = candidates[i];
-               candidate y = candidates[candidate_count - 1];
-               if (x.votes < y.votes)
-               {
-                   candidates[i] = y;
-                   candidates[candidate_count - 1] = x;
-               }
+                // Make swap array
+                candidate swap[2] = {candidates[k], candidates[k+1]};
+
+                candidates[k] = swap[1];
+                candidates[k+1] = swap[0];
             }
         }
+    }
 
     // Print sorted results 
     printf("Sorted Results:\n");
@@ -113,7 +115,29 @@ void print_winner(void)
     {
         printf("%s: %i\n", candidates[i].name, candidates[i].votes);
     }
+ 
+    int winners = 1;
     // Check for ties
+    for (int i = 1; i < candidate_count; i++)
+    {
+        if (candidates[i].votes == candidates[0].votes)
+        {
+            winners++;
+        }
+    }
+
+    if (winners == 1)
+    {
+        printf("Winner: %s (%i votes)\n", candidates[0].name, candidates[0].votes);
+    }
+    else
+    {
+        printf("%i-way Tie! Winners:\n", winners);
+        for (int i = 0; i < winners; i++)
+        {
+            printf("%s\n", candidates[i].name);
+        }
+    }
     // Add winner(s) to winner[]
     // Print winner[]
     return;
